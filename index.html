@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Підключення іконок -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Beauty for every day</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar" id="navigation" aria-label="Панель навігації" data-background-slideshow="navigation">
+
+    <!-- Логотип -->
+    <a href="#home" class="logo">
+        <img class="logo-image" src="images/shop-logo.jpeg" alt="Beauty for every day — Soap flowers">
+        <span class="logo-text">Beauty for every day</span>
+    </a>
+
+    <!-- Навігація -->
+    <nav class="nav-menu" aria-label="Головна навігація">
+
+        <a href="#home" class="nav-link nav-home-button active">
+            <i class="fa-solid fa-house"></i>
+            <span>Дім</span>
+        </a>
+
+        <a href="#catalog" class="nav-link nav-catalog-button">
+            <i class="fa-solid fa-border-all"></i>
+            <span>Каталог</span>
+        </a>
+
+        <button class="nav-link account-toggle account-gradient-button" type="button" data-account-toggle
+            aria-expanded="false" aria-controls="account">
+            <i class="fa-regular fa-user"></i>
+            <span>Особистий кабінет</span>
+        </button>
+
+        <button class="nav-link cart-link cart-toggle cart-gradient-button" type="button" data-cart-toggle
+                aria-expanded="false" aria-controls="cart">
+            <span class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">3</span>
+            </span>
+            <span>Кошик</span>
+        </button>
+
+        <button class="nav-link reviews-toggle reviews-gold-button" type="button" data-reviews-toggle
+            aria-expanded="false" aria-controls="reviews">
+            <i class="fa-regular fa-star" aria-hidden="true"></i>
+            <span>Відгуки</span>
+        </button>
+
+        <a href="#contact" class="nav-link contact-nav-link contact-gradient-button">
+            <i class="fa-regular fa-address-book" aria-hidden="true"></i>
+            <span>Форми зв’язку</span>
+        </a>
+
+        <button class="nav-link nav-search-toggle search-interaction-button" type="button" data-search-toggle
+                aria-expanded="false" aria-controls="product-search-form">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <span>Пошук</span>
+        </button>
+
+    </nav>
+
+    <!-- Кнопка мобільного меню -->
+    <button class="menu-toggle" type="button" aria-label="Відкрити меню"
+            aria-expanded="false" aria-controls="mobile-menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="owner-controls">
+        <button class="form-button" type="button" data-owner-login-toggle aria-expanded="false"
+                aria-controls="owner-login-form" aria-label="Вхід власника" title="Вхід власника">
+            <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+            <span>Вхід власника</span>
+        </button>
+        <button class="form-button" type="button" data-owner-logout aria-label="Вийти з режиму власника"
+                title="Вийти з режиму власника" hidden>
+            <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+            <span>Вийти з режиму власника</span>
+        </button>
+    </div>
+    <form class="owner-login-form" id="owner-login-form" hidden>
+        <h4>Вхід власника магазину</h4>
+        <div class="form-field">
+            <label for="owner-username">Логін</label>
+            <input id="owner-username" name="username" type="text" autocomplete="username"
+                   maxlength="80" required>
+        </div>
+        <div class="form-field">
+            <label for="owner-password">Пароль</label>
+            <input id="owner-password" name="password" type="password" autocomplete="current-password"
+                   maxlength="200" required>
+        </div>
+        <div class="owner-login-actions">
+            <button class="form-button" type="submit">Увійти</button>
+            <button class="owner-login-cancel" type="button" data-owner-login-cancel>Скасувати</button>
+        </div>
+        <p class="form-message" id="owner-login-message" aria-live="polite"></p>
+    </form>
+
+    <!-- Мобільне меню -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Мобільна навігація" hidden>
+        <a href="#home" class="nav-home-button"><i class="fa-solid fa-house"></i> Дім</a>
+        <a href="#catalog" class="nav-catalog-button">
+            <i class="fa-solid fa-border-all"></i>
+            <span>Каталог</span>
+        </a>
+        <button class="mobile-account-toggle account-gradient-button" type="button" data-account-toggle
+                aria-expanded="false" aria-controls="account">
+            <i class="fa-regular fa-user" aria-hidden="true"></i>
+            Особистий кабінет
+        </button>
+        <button class="mobile-cart-toggle cart-gradient-button" type="button" data-cart-toggle
+                aria-expanded="false" aria-controls="cart">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+            <span>Кошик (<span id="mobile-cart-count">3</span>)</span>
+        </button>
+        <button class="mobile-reviews-toggle reviews-gold-button" type="button" data-reviews-toggle
+            aria-expanded="false" aria-controls="reviews">
+            <i class="fa-regular fa-star" aria-hidden="true"></i>
+            <span>Відгуки клієнтів</span>
+        </button>
+        <a class="mobile-contact-link contact-gradient-button" href="#contact">
+            <i class="fa-regular fa-address-book" aria-hidden="true"></i>
+            Форми зв’язку
+        </a>
+        <button class="mobile-search-trigger search-interaction-button" type="button" data-search-toggle
+                aria-expanded="false" aria-controls="product-search-form">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Пошук товарів
+        </button>
+    </nav>
+
+    <form class="nav-search-form" id="product-search-form" role="search" hidden>
+        <div class="nav-search-heading">
+            <span class="nav-search-title">Пошук у каталозі</span>
+            <button class="nav-search-close" type="button" aria-label="Закрити пошук">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+        <label class="visually-hidden" for="catalog-search">Пошук товарів у каталозі</label>
+        <div class="nav-search-control">
+            <input id="catalog-search" name="query" type="search"
+                   placeholder="Знайти товар або категорію" autocomplete="off">
+            <button class="nav-search-submit" type="submit" aria-label="Шукати">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+            <button class="nav-search-clear" type="button" aria-label="Очистити пошук">
+                <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+            </button>
+        </div>
+        <p class="nav-search-status" id="search-status" aria-live="polite">У каталозі 9 категорій</p>
+    </form>
+</header>
+
+<main class="home-section" id="home">
+    <div class="home-container">
+        <header class="home-welcome">
+            <h1>Beauty for every day</h1>
+            <h2>Вітаємо в нашому магазині!</h2>
+        </header>
+
+        <div class="home-copy">
+            <section class="home-story" aria-labelledby="home-story-title">
+                <h3 class="home-lead" id="home-story-title">Квіти, букети, декорації — ми любимо їх усі.</h3>
+                <p>Квіти — це дивовижні дари природи, які чарують красою, ніжністю та різноманіттям. Барвисті пелюстки, приємні аромати й елегантні форми здавна надихають художників, поетів та музикантів.</p>
+
+                <h3 class="home-subtitle">Квіти від серця</h3>
+                <p>Польові квіти — дивовижний дар природи, що розкривається перед нами у всій своїй простоті та безпосередності. Їхні ніжні пелюстки, яскраві барви та тонкий аромат здатні надихнути кожного. Давайте разом зануримося у світ польових квітів і відчуємо їхню життєдайну силу.</p>
+            </section>
+
+            <aside class="florist-note" aria-labelledby="florist-title">
+                <h3 id="florist-title">Досвідчений флорист з любов'ю до прекрасного</h3>
+                <p>Тут починається творча й прекрасна робота з утілення ваших побажань та моїх ідей у життя. Вони даруватимуть вам і вашим рідним приємні емоції протягом усього життя.</p>
+                <p class="home-signature"><strong>Тетяна Хуторна</strong><span>Власниця</span></p>
+            </aside>
+        </div>
+    </div>
+</main>
+
+<section class="catalog-section" id="catalog" aria-labelledby="catalog-title" data-background-slideshow="catalog">
+    <div class="catalog-container">
+        <header class="catalog-heading">
+            <h2 class="section-title" id="catalog-title" tabindex="-1">Каталог</h2>
+            <p>Квіти, подарункове оформлення, засоби для догляду та затишку вдома.</p>
+        </header>
+
+        <div class="catalog-grid">
+            <article class="catalog-card">
+                <img src="images/nav-soap.jpg" alt="Бруски мила ручної роботи з лавандою" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Мило ручної роботи</h3>
+                    <p>Ароматні мильні бруски з виразною текстурою та природним настроєм.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-soap-section
+                            aria-expanded="false" aria-controls="soap-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="images/soap-flower-basket.jpg" alt="Кошик яскравих квітів, створених із мила" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Квіти з мила</h3>
+                    <p>Квіткові композиції, які поєднують декоративність букета й аромат мила.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-flower-section
+                            aria-expanded="false" aria-controls="flower-soap-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="images/nav-candles.jpg" alt="Запалена ароматична свічка" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Свічки для затишку</h3>
+                    <p>Тепле світло та спокійна атмосфера для домашнього відпочинку.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-candle-section
+                            aria-expanded="false" aria-controls="candle-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="https://images.pexels.com/photos/30828535/pexels-photo-30828535.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Яскрава квіткова композиція у подарунковій коробці" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Коробки для квітів</h3>
+                    <p>Коробка підкреслює форму букета й перетворює квіти на завершений подарунок.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-flower-box-section
+                            aria-expanded="false" aria-controls="flower-box-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="https://images.pexels.com/photos/5040819/pexels-photo-5040819.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Листівки та конверти з квітковим оформленням" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Листівки та конверти</h3>
+                    <p>Додайте до подарунка кілька теплих слів — листівка збереже їх як пам’ять.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-card-section
+                            aria-expanded="false" aria-controls="card-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="https://images.unsplash.com/photo-1668127039852-0e7c8b3a1601?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Декоративна зелена стрічка на світлому тлі" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Стрічки</h3>
+                    <p>Атласні й декоративні стрічки додають букетам і пакуванню виразний завершальний штрих.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-ribbon-section
+                            aria-expanded="false" aria-controls="ribbon-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="https://images.pexels.com/photos/7764513/pexels-photo-7764513.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Кольорові паперові подарункові пакети з ручками" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Подарункові пакети</h3>
+                    <p>Зручне й красиве пакування для квітів, мила та невеликих сюрпризів.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-gift-bag-section
+                            aria-expanded="false" aria-controls="gift-bag-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="https://images.pexels.com/photos/16008945/pexels-photo-16008945.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Засоби для догляду за шкірою в декоративних флаконах" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Косметика для неї та для нього</h3>
+                    <p>Засоби для щоденного догляду за обличчям і тілом — для себе або як доповнення до подарунка.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-cosmetics-section
+                            aria-expanded="false" aria-controls="cosmetics-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+
+            <article class="catalog-card">
+                <img src="https://images.pexels.com/photos/5217900/pexels-photo-5217900.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Пляшечки з побутовими засобами для прибирання" loading="lazy">
+                <div class="catalog-card-content">
+                    <h3>Побутова хімія</h3>
+                    <p>Практичні засоби для чистоти й догляду за домом, щоб у щоденних справах було менше клопоту.</p>
+                    <button class="form-button catalog-open-button" type="button" data-open-household-section
+                            aria-expanded="false" aria-controls="household-section"
+                            data-tooltip="Перейдіть до товарів цього розділу">
+                        Перейти до розділу
+                    </button>
+                </div>
+            </article>
+        </div>
+
+        <div class="soap-section" id="soap-section" hidden>
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 1</p>
+                    <h3 tabindex="-1">Мило ручної роботи</h3>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-soap-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="soap-figures-title">
+                <h4 id="soap-figures-title">1. Дитячі фігурки з мила</h4>
+                <form class="soap-product-form" data-soap-category="figures" hidden>
+                    <div class="form-field">
+                        <label for="soap-figures-name">Назва товару</label>
+                        <input id="soap-figures-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="soap-figures-price">Ціна, грн</label>
+                        <input id="soap-figures-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="soap-figures-image">Фото товару</label>
+                        <input id="soap-figures-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="figures" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="soap-gifts-title">
+                <h4 id="soap-gifts-title">2. Подарункові набори з мила</h4>
+                <form class="soap-product-form" data-soap-category="gift-sets" hidden>
+                    <div class="form-field">
+                        <label for="soap-gifts-name">Назва товару</label>
+                        <input id="soap-gifts-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="soap-gifts-price">Ціна, грн</label>
+                        <input id="soap-gifts-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="soap-gifts-image">Фото товару</label>
+                        <input id="soap-gifts-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="gift-sets" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section flower-catalog-section" id="flower-soap-section"
+         aria-labelledby="flower-soap-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 2</p>
+                    <h2 class="section-title" id="flower-soap-title" tabindex="-1">Квіти з мила</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-flower-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="flower-wedding-title">
+                <h4 id="flower-wedding-title">1. Весільні букети</h4>
+                <form class="soap-product-form" data-soap-category="flower-wedding" hidden>
+                    <div class="form-field">
+                        <label for="flower-wedding-name">Назва товару</label>
+                        <input id="flower-wedding-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-wedding-price">Ціна, грн</label>
+                        <input id="flower-wedding-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-wedding-image">Фото товару</label>
+                        <input id="flower-wedding-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-wedding" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="flower-birthday-title">
+                <h4 id="flower-birthday-title">2. День народження / Ювілей</h4>
+                <form class="soap-product-form" data-soap-category="flower-birthday" hidden>
+                    <div class="form-field">
+                        <label for="flower-birthday-name">Назва товару</label>
+                        <input id="flower-birthday-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-birthday-price">Ціна, грн</label>
+                        <input id="flower-birthday-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-birthday-image">Фото товару</label>
+                        <input id="flower-birthday-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-birthday" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="flower-valentines-title">
+                <h4 id="flower-valentines-title">3. День закоханих</h4>
+                <form class="soap-product-form" data-soap-category="flower-valentines" hidden>
+                    <div class="form-field">
+                        <label for="flower-valentines-name">Назва товару</label>
+                        <input id="flower-valentines-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-valentines-price">Ціна, грн</label>
+                        <input id="flower-valentines-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-valentines-image">Фото товару</label>
+                        <input id="flower-valentines-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-valentines" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="flower-march-title">
+                <h4 id="flower-march-title">4. 8 Березня</h4>
+                <form class="soap-product-form" data-soap-category="flower-march" hidden>
+                    <div class="form-field">
+                        <label for="flower-march-name">Назва товару</label>
+                        <input id="flower-march-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-march-price">Ціна, грн</label>
+                        <input id="flower-march-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-march-image">Фото товару</label>
+                        <input id="flower-march-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-march" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="flower-school-title">
+                <h4 id="flower-school-title">5. 1 Вересня / Останній дзвоник</h4>
+                <form class="soap-product-form" data-soap-category="flower-school" hidden>
+                    <div class="form-field">
+                        <label for="flower-school-name">Назва товару</label>
+                        <input id="flower-school-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-school-price">Ціна, грн</label>
+                        <input id="flower-school-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-school-image">Фото товару</label>
+                        <input id="flower-school-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-school" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="flower-any-occasion-title">
+                <h4 id="flower-any-occasion-title">6. На будь-який випадок</h4>
+                <form class="soap-product-form" data-soap-category="flower-any-occasion" hidden>
+                    <div class="form-field">
+                        <label for="flower-any-occasion-name">Назва товару</label>
+                        <input id="flower-any-occasion-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-any-occasion-price">Ціна, грн</label>
+                        <input id="flower-any-occasion-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-any-occasion-image">Фото товару</label>
+                        <input id="flower-any-occasion-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-any-occasion" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section product-catalog-section" id="candle-section"
+         aria-labelledby="candle-section-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 3</p>
+                    <h2 class="section-title" id="candle-section-title" tabindex="-1">Свічки для затишку</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-candle-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="candle-beeswax-sheet-title">
+                <h4 id="candle-beeswax-sheet-title">1. Свічки з вощини</h4>
+                <form class="soap-product-form" data-soap-category="candle-beeswax-sheet" hidden>
+                    <div class="form-field">
+                        <label for="candle-beeswax-sheet-name">Назва товару</label>
+                        <input id="candle-beeswax-sheet-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="candle-beeswax-sheet-price">Ціна, грн</label>
+                        <input id="candle-beeswax-sheet-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="candle-beeswax-sheet-image">Фото товару</label>
+                        <input id="candle-beeswax-sheet-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="candle-beeswax-sheet" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="candle-wax-title">
+                <h4 id="candle-wax-title">2. Свічки з воску</h4>
+                <form class="soap-product-form" data-soap-category="candle-wax" hidden>
+                    <div class="form-field">
+                        <label for="candle-wax-name">Назва товару</label>
+                        <input id="candle-wax-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="candle-wax-price">Ціна, грн</label>
+                        <input id="candle-wax-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="candle-wax-image">Фото товару</label>
+                        <input id="candle-wax-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="candle-wax" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="candle-gift-sets-title">
+                <h4 id="candle-gift-sets-title">3. Подарункові набори</h4>
+                <form class="soap-product-form" data-soap-category="candle-gift-sets" hidden>
+                    <div class="form-field">
+                        <label for="candle-gift-sets-name">Назва товару</label>
+                        <input id="candle-gift-sets-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="candle-gift-sets-price">Ціна, грн</label>
+                        <input id="candle-gift-sets-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="candle-gift-sets-image">Фото товару</label>
+                        <input id="candle-gift-sets-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="candle-gift-sets" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section product-catalog-section" id="flower-box-section"
+         aria-labelledby="flower-box-section-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 4</p>
+                    <h2 class="section-title" id="flower-box-section-title" tabindex="-1">Коробки для квітів</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-flower-box-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="flower-box-baskets-title">
+                <h4 id="flower-box-baskets-title">1. Плетені корзинки</h4>
+                <form class="soap-product-form" data-soap-category="flower-box-baskets" hidden>
+                    <div class="form-field">
+                        <label for="flower-box-baskets-name">Назва товару</label>
+                        <input id="flower-box-baskets-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-box-baskets-price">Ціна, грн</label>
+                        <input id="flower-box-baskets-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-box-baskets-image">Фото товару</label>
+                        <input id="flower-box-baskets-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-box-baskets" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="flower-box-planters-title">
+                <h4 id="flower-box-planters-title">2. Кашпо</h4>
+                <form class="soap-product-form" data-soap-category="flower-box-planters" hidden>
+                    <div class="form-field">
+                        <label for="flower-box-planters-name">Назва товару</label>
+                        <input id="flower-box-planters-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-box-planters-price">Ціна, грн</label>
+                        <input id="flower-box-planters-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-box-planters-image">Фото товару</label>
+                        <input id="flower-box-planters-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-box-planters" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="flower-box-bags-title">
+                <h4 id="flower-box-bags-title">3. Флористичні сумочки</h4>
+                <form class="soap-product-form" data-soap-category="flower-box-bags" hidden>
+                    <div class="form-field">
+                        <label for="flower-box-bags-name">Назва товару</label>
+                        <input id="flower-box-bags-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-box-bags-price">Ціна, грн</label>
+                        <input id="flower-box-bags-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="flower-box-bags-image">Фото товару</label>
+                        <input id="flower-box-bags-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="flower-box-bags" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section product-catalog-section" id="card-section"
+         aria-labelledby="card-section-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 5</p>
+                    <h2 class="section-title" id="card-section-title" tabindex="-1">Листівки та конверти</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-card-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="card-wedding-title">
+                <h4 id="card-wedding-title">1. Весільні листівки</h4>
+                <form class="soap-product-form" data-soap-category="card-wedding" hidden>
+                    <div class="form-field">
+                        <label for="card-wedding-name">Назва товару</label>
+                        <input id="card-wedding-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="card-wedding-price">Ціна, грн</label>
+                        <input id="card-wedding-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="card-wedding-image">Фото товару</label>
+                        <input id="card-wedding-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="card-wedding" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="card-anniversary-title">
+                <h4 id="card-anniversary-title">2. Ювілейні листівки</h4>
+                <form class="soap-product-form" data-soap-category="card-anniversary" hidden>
+                    <div class="form-field">
+                        <label for="card-anniversary-name">Назва товару</label>
+                        <input id="card-anniversary-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="card-anniversary-price">Ціна, грн</label>
+                        <input id="card-anniversary-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="card-anniversary-image">Фото товару</label>
+                        <input id="card-anniversary-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="card-anniversary" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="card-envelopes-title">
+                <h4 id="card-envelopes-title">3. Конверти</h4>
+                <form class="soap-product-form" data-soap-category="card-envelopes" hidden>
+                    <div class="form-field">
+                        <label for="card-envelopes-name">Назва товару</label>
+                        <input id="card-envelopes-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="card-envelopes-price">Ціна, грн</label>
+                        <input id="card-envelopes-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="card-envelopes-image">Фото товару</label>
+                        <input id="card-envelopes-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="card-envelopes" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section product-catalog-section" id="ribbon-section"
+         aria-labelledby="ribbon-section-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 6</p>
+                    <h2 class="section-title" id="ribbon-section-title" tabindex="-1">Стрічки</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-ribbon-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="ribbon-satin-title">
+                <h4 id="ribbon-satin-title">1. Атласні стрічки</h4>
+                <form class="soap-product-form" data-soap-category="ribbon-satin" hidden>
+                    <div class="form-field">
+                        <label for="ribbon-satin-name">Назва товару</label>
+                        <input id="ribbon-satin-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="ribbon-satin-price">Ціна, грн</label>
+                        <input id="ribbon-satin-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="ribbon-satin-image">Фото товару</label>
+                        <input id="ribbon-satin-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="ribbon-satin" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="ribbon-lace-title">
+                <h4 id="ribbon-lace-title">2. Мереживо</h4>
+                <form class="soap-product-form" data-soap-category="ribbon-lace" hidden>
+                    <div class="form-field">
+                        <label for="ribbon-lace-name">Назва товару</label>
+                        <input id="ribbon-lace-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="ribbon-lace-price">Ціна, грн</label>
+                        <input id="ribbon-lace-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="ribbon-lace-image">Фото товару</label>
+                        <input id="ribbon-lace-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="ribbon-lace" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="ribbon-chiffon-title">
+                <h4 id="ribbon-chiffon-title">3. Шифонові стрічки</h4>
+                <form class="soap-product-form" data-soap-category="ribbon-chiffon" hidden>
+                    <div class="form-field">
+                        <label for="ribbon-chiffon-name">Назва товару</label>
+                        <input id="ribbon-chiffon-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="ribbon-chiffon-price">Ціна, грн</label>
+                        <input id="ribbon-chiffon-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="ribbon-chiffon-image">Фото товару</label>
+                        <input id="ribbon-chiffon-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="ribbon-chiffon" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section product-catalog-section" id="gift-bag-section"
+         aria-labelledby="gift-bag-section-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 7</p>
+                    <h2 class="section-title" id="gift-bag-section-title" tabindex="-1">Подарункові пакети</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-gift-bag-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="gift-bag-paper-title">
+                <h4 id="gift-bag-paper-title">1. Паперові пакети</h4>
+                <form class="soap-product-form" data-soap-category="gift-bag-paper" hidden>
+                    <div class="form-field">
+                        <label for="gift-bag-paper-name">Назва товару</label>
+                        <input id="gift-bag-paper-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="gift-bag-paper-price">Ціна, грн</label>
+                        <input id="gift-bag-paper-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="gift-bag-paper-image">Фото товару</label>
+                        <input id="gift-bag-paper-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="gift-bag-paper" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="gift-bag-kraft-title">
+                <h4 id="gift-bag-kraft-title">2. Крафтові пакети</h4>
+                <form class="soap-product-form" data-soap-category="gift-bag-kraft" hidden>
+                    <div class="form-field">
+                        <label for="gift-bag-kraft-name">Назва товару</label>
+                        <input id="gift-bag-kraft-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="gift-bag-kraft-price">Ціна, грн</label>
+                        <input id="gift-bag-kraft-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="gift-bag-kraft-image">Фото товару</label>
+                        <input id="gift-bag-kraft-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="gift-bag-kraft" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="gift-bag-foil-title">
+                <h4 id="gift-bag-foil-title">3. Фольговані та з голографічним покриттям</h4>
+                <form class="soap-product-form" data-soap-category="gift-bag-foil" hidden>
+                    <div class="form-field">
+                        <label for="gift-bag-foil-name">Назва товару</label>
+                        <input id="gift-bag-foil-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="gift-bag-foil-price">Ціна, грн</label>
+                        <input id="gift-bag-foil-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="gift-bag-foil-image">Фото товару</label>
+                        <input id="gift-bag-foil-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="gift-bag-foil" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section product-catalog-section" id="cosmetics-section"
+         aria-labelledby="cosmetics-section-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 8</p>
+                    <h2 class="section-title" id="cosmetics-section-title" tabindex="-1">Косметика для неї та для нього</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-cosmetics-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="cosmetics-her-title">
+                <h4 id="cosmetics-her-title">1. Косметика для неї</h4>
+                <form class="soap-product-form" data-soap-category="cosmetics-her" hidden>
+                    <div class="form-field">
+                        <label for="cosmetics-her-name">Назва товару</label>
+                        <input id="cosmetics-her-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="cosmetics-her-price">Ціна, грн</label>
+                        <input id="cosmetics-her-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="cosmetics-her-image">Фото товару</label>
+                        <input id="cosmetics-her-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="cosmetics-her" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="cosmetics-him-title">
+                <h4 id="cosmetics-him-title">2. Косметика для нього</h4>
+                <form class="soap-product-form" data-soap-category="cosmetics-him" hidden>
+                    <div class="form-field">
+                        <label for="cosmetics-him-name">Назва товару</label>
+                        <input id="cosmetics-him-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="cosmetics-him-price">Ціна, грн</label>
+                        <input id="cosmetics-him-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="cosmetics-him-image">Фото товару</label>
+                        <input id="cosmetics-him-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="cosmetics-him" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="catalog-section product-catalog-section" id="household-section"
+         aria-labelledby="household-section-title" hidden>
+    <div class="catalog-container">
+        <div class="soap-section">
+            <div class="soap-section-heading">
+                <div>
+                    <p class="catalog-breadcrumb">Каталог / Розділ 9</p>
+                    <h2 class="section-title" id="household-section-title" tabindex="-1">Побутова хімія</h2>
+                </div>
+                <button class="form-button soap-back-button" type="button" data-close-household-section
+                        data-tooltip="Поверніться до всіх розділів каталогу">
+                    Повернутися до каталогу
+                </button>
+            </div>
+            <p class="soap-storage-note">
+                Переглядайте товари каталогу. Для керування товарами увійдіть як власник через панель навігації.
+            </p>
+
+            <section class="soap-category" aria-labelledby="household-kitchen-title">
+                <h4 id="household-kitchen-title">1. Для кухні</h4>
+                <form class="soap-product-form" data-soap-category="household-kitchen" hidden>
+                    <div class="form-field">
+                        <label for="household-kitchen-name">Назва товару</label>
+                        <input id="household-kitchen-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="household-kitchen-price">Ціна, грн</label>
+                        <input id="household-kitchen-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="household-kitchen-image">Фото товару</label>
+                        <input id="household-kitchen-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="household-kitchen" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="household-bathroom-title">
+                <h4 id="household-bathroom-title">2. Для ванної кімнати</h4>
+                <form class="soap-product-form" data-soap-category="household-bathroom" hidden>
+                    <div class="form-field">
+                        <label for="household-bathroom-name">Назва товару</label>
+                        <input id="household-bathroom-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="household-bathroom-price">Ціна, грн</label>
+                        <input id="household-bathroom-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="household-bathroom-image">Фото товару</label>
+                        <input id="household-bathroom-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="household-bathroom" aria-live="polite"></div>
+            </section>
+
+            <section class="soap-category" aria-labelledby="household-home-title">
+                <h4 id="household-home-title">3. Для дому</h4>
+                <form class="soap-product-form" data-soap-category="household-home" hidden>
+                    <div class="form-field">
+                        <label for="household-home-name">Назва товару</label>
+                        <input id="household-home-name" name="name" type="text" maxlength="80" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="household-home-price">Ціна, грн</label>
+                        <input id="household-home-price" name="price" type="number" min="0.01" max="1000000" step="0.01" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="household-home-image">Фото товару</label>
+                        <input id="household-home-image" name="image" type="file" accept="image/*" required>
+                    </div>
+                    <button class="form-button" type="submit">Додати товар</button>
+                    <p class="form-message" aria-live="polite"></p>
+                </form>
+                <div class="soap-product-grid" data-soap-products="household-home" aria-live="polite"></div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="account-section" id="account" aria-labelledby="account-title" data-background-slideshow="account" hidden>
+    <div class="account-container">
+        <header class="account-heading">
+            <span class="account-icon" aria-hidden="true">
+                <i class="fa-regular fa-user"></i>
+            </span>
+            <div>
+                <h2 id="account-title" tabindex="-1">Особистий кабінет</h2>
+                <p>Переглядайте та редагуйте дані профілю.</p>
+            </div>
+        </header>
+
+        <div class="account-notice" role="note">
+            Це демонстраційна форма: дані не зберігаються і не надсилаються.
+            Для збереження профілю, зміни пароля та email потрібен сервер із системою авторизації.
+        </div>
+
+        <form class="account-card" id="profile-form">
+            <h3>Особисті дані</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="last-name">Прізвище</label>
+                    <input id="last-name" name="lastName" type="text" autocomplete="family-name" required>
+                </div>
+                <div class="form-field">
+                    <label for="first-name">Ім’я</label>
+                    <input id="first-name" name="firstName" type="text" autocomplete="given-name" required>
+                </div>
+                <div class="form-field">
+                    <label for="middle-name">По батькові</label>
+                    <input id="middle-name" name="middleName" type="text" autocomplete="additional-name">
+                </div>
+                <div class="form-field">
+                    <label for="birth-date">Дата народження</label>
+                    <input id="birth-date" name="birthDate" type="date" autocomplete="bday">
+                </div>
+                <fieldset class="form-field">
+                    <legend>Стать</legend>
+                    <div class="radio-options">
+                        <label><input type="radio" name="gender" value="male"> Чоловік</label>
+                        <label><input type="radio" name="gender" value="female"> Жінка</label>
+                    </div>
+                </fieldset>
+                <div class="form-field">
+                    <label for="marital-status">Сімейний стан</label>
+                    <select id="marital-status" name="maritalStatus">
+                        <option value="">Не вказано</option>
+                        <option value="married">У шлюбі</option>
+                        <option value="unmarried-male">Не одружений</option>
+                        <option value="unmarried-female">Неодружена</option>
+                        <option value="divorced-male">Розлучений</option>
+                        <option value="divorced-female">Розлучена</option>
+                    </select>
+                </div>
+                <fieldset class="form-field">
+                    <legend>Чи є діти?</legend>
+                    <div class="radio-options">
+                        <label><input type="radio" name="hasChildren" value="yes"> Так</label>
+                        <label><input type="radio" name="hasChildren" value="no"> Ні</label>
+                    </div>
+                </fieldset>
+                <div class="form-field">
+                    <label for="phone">Номер телефону</label>
+                    <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+380 XX XXX XX XX">
+                </div>
+                <div class="form-field form-field-wide">
+                    <label for="address">Місце проживання</label>
+                    <input id="address" name="address" type="text" autocomplete="street-address" placeholder="Місто, вулиця, будинок">
+                </div>
+            </div>
+            <button class="form-button" type="submit">Зберегти зміни</button>
+            <p class="form-message" id="profile-message" aria-live="polite"></p>
+        </form>
+
+        <form class="account-card" id="password-form">
+            <h3>Змінити пароль</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="current-password">Поточний пароль</label>
+                    <input id="current-password" name="currentPassword" type="password" autocomplete="current-password" required>
+                </div>
+                <div class="form-field">
+                    <label for="new-password">Новий пароль</label>
+                    <input id="new-password" name="newPassword" type="password" autocomplete="new-password" minlength="8" required>
+                </div>
+                <div class="form-field">
+                    <label for="confirm-password">Підтвердіть новий пароль</label>
+                    <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required>
+                </div>
+            </div>
+            <button class="form-button" type="submit">Оновити пароль</button>
+            <p class="form-message" id="password-message" aria-live="polite"></p>
+        </form>
+
+        <form class="account-card" id="email-form">
+            <h3>Додати або змінити email</h3>
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
+            </div>
+            <button class="form-button" type="submit">Оновити email</button>
+            <p class="form-message" id="email-message" aria-live="polite"></p>
+        </form>
+    </div>
+</section>
+
+<section class="cart-section" id="cart" aria-labelledby="cart-title" data-background-slideshow="cart" hidden>
+    <div class="cart-container">
+        <header class="cart-heading">
+            <span class="account-icon" aria-hidden="true">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </span>
+            <div>
+                <h2 id="cart-title" tabindex="-1">Кошик і оформлення замовлення</h2>
+                <p>Перевірте товари та заповніть дані для доставки.</p>
+            </div>
+        </header>
+
+        <div class="account-notice" role="note">
+            У кошику наведено демонстраційні товари. Замовлення не надсилається продавцю,
+            а контактні дані не зберігаються: для реального оформлення потрібне підключення сервера.
+        </div>
+
+        <div class="cart-layout">
+            <section class="account-card cart-items-card" aria-labelledby="cart-items-title">
+                <h3 id="cart-items-title">Ваші товари</h3>
+                <div class="cart-items" id="cart-items" aria-live="polite"></div>
+                <div class="cart-total">
+                    <span>Разом</span>
+                    <strong id="cart-total">0 грн</strong>
+                </div>
+            </section>
+
+            <form class="account-card order-card" id="order-form">
+                <h3>Дані замовлення</h3>
+
+                <fieldset class="order-group">
+                    <legend>Контактні дані покупця</legend>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="buyer-name">Ім’я та прізвище</label>
+                            <input id="buyer-name" name="buyerName" type="text" autocomplete="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="buyer-phone">Номер телефону</label>
+                            <input id="buyer-phone" name="buyerPhone" type="tel" autocomplete="tel" placeholder="+380 XX XXX XX XX" required>
+                        </div>
+                    </div>
+                    <label class="checkbox-option">
+                        <input id="different-recipient" name="differentRecipient" type="checkbox">
+                        Отримувач — інша людина
+                    </label>
+                    <div class="form-grid recipient-fields" id="recipient-fields" hidden>
+                        <div class="form-field">
+                            <label for="recipient-name">Ім’я та прізвище отримувача</label>
+                            <input id="recipient-name" name="recipientName" type="text" autocomplete="off" disabled>
+                        </div>
+                        <div class="form-field">
+                            <label for="recipient-phone">Телефон отримувача</label>
+                            <input id="recipient-phone" name="recipientPhone" type="tel" autocomplete="off" placeholder="+380 XX XXX XX XX" disabled>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="order-group">
+                    <legend>Доставка</legend>
+                    <p class="delivery-method"><i class="fa-solid fa-truck" aria-hidden="true"></i> Нова пошта</p>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="region">Область</label>
+                            <input id="region" name="region" type="text" autocomplete="address-level1" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="city">Місто</label>
+                            <input id="city" name="city" type="text" autocomplete="address-level2" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="district">Район</label>
+                            <input id="district" name="district" type="text">
+                        </div>
+                        <div class="form-field">
+                            <label for="village">Село / населений пункт</label>
+                            <input id="village" name="village" type="text">
+                        </div>
+                        <div class="form-field form-field-wide">
+                            <label for="post-office">Відділення або поштомат Нової пошти</label>
+                            <input id="post-office" name="postOffice" type="text" placeholder="Номер або адреса відділення" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="order-group">
+                    <legend>Спосіб оплати</legend>
+                    <div class="payment-options">
+                        <label><input type="radio" name="payment" value="card" required> Оплата на картку</label>
+                        <label><input type="radio" name="payment" value="cod"> Післяплата</label>
+                        <label><input type="radio" name="payment" value="account"> Оплата на рахунок</label>
+                        <label><input type="radio" name="payment" value="apple-pay"> Apple Pay</label>
+                        <label><input type="radio" name="payment" value="google-pay"> Google Pay</label>
+                    </div>
+                </fieldset>
+
+                <div class="form-field">
+                    <label for="order-comment">Коментар до замовлення</label>
+                    <textarea id="order-comment" name="comment" rows="4" maxlength="500" placeholder="Необов’язково"></textarea>
+                </div>
+
+                <button class="form-button" type="submit">Оформити замовлення</button>
+                <p class="form-message" id="order-message" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="reviews-section" id="reviews" aria-labelledby="reviews-title" hidden>
+    <div class="reviews-container">
+        <header class="reviews-heading">
+            <span class="account-icon" aria-hidden="true">
+                <i class="fa-regular fa-star"></i>
+            </span>
+            <div>
+                <h2 id="reviews-title" tabindex="-1">Відгуки клієнтів</h2>
+                <p>Ваш досвід допомагає нам ставати кращими.</p>
+            </div>
+        </header>
+
+        <div class="reviews-layout">
+            <form class="account-card review-form" id="review-form">
+                <h3>Залишити відгук</h3>
+                <div class="form-field">
+                    <label for="review-author">Ваше ім’я</label>
+                    <input id="review-author" name="author" type="text" autocomplete="name"
+                           minlength="2" maxlength="60" required>
+                </div>
+                <fieldset class="form-field review-rating">
+                    <legend>Оцінка магазину</legend>
+                    <div class="review-rating-options">
+                        <label><input type="radio" name="rating" value="1" required> 1 ★</label>
+                        <label><input type="radio" name="rating" value="2" required> 2 ★</label>
+                        <label><input type="radio" name="rating" value="3" required> 3 ★</label>
+                        <label><input type="radio" name="rating" value="4" required> 4 ★</label>
+                        <label><input type="radio" name="rating" value="5" required> 5 ★</label>
+                    </div>
+                </fieldset>
+                <div class="form-field">
+                    <label for="review-text">Ваш відгук</label>
+                    <textarea id="review-text" name="text" rows="5" minlength="10"
+                              maxlength="1000" placeholder="Поділіться враженнями про замовлення" required></textarea>
+                </div>
+                <button class="form-button" type="submit">Опублікувати відгук</button>
+                <p class="form-message" id="review-message" aria-live="polite"></p>
+            </form>
+
+            <section class="account-card review-panel" aria-label="Опубліковані відгуки">
+                <div class="reviews-summary">
+                    <strong id="review-average">—</strong>
+                    <span class="review-summary-stars" id="review-summary-stars" aria-hidden="true">☆☆☆☆☆</span>
+                    <span id="review-count">Відгуків поки немає</span>
+                </div>
+                <div class="review-list" id="review-list" aria-live="polite"></div>
+            </section>
+        </div>
+
+        <p class="reviews-disclaimer" role="note">
+            Демо-режим: відгуки та відповіді зберігаються лише в цьому браузері. Для публічного доступу й підтвердження власника потрібен сервер.
+        </p>
+    </div>
+</section>
+
+<section class="contact-section" id="contact" aria-labelledby="contact-title">
+    <div class="contact-container">
+        <header class="contact-heading">
+            <span class="contact-heading-icon" aria-hidden="true">
+                <i class="fa-regular fa-address-book"></i>
+            </span>
+            <div>
+                <h2 id="contact-title">Форми зв’язку</h2>
+                <p>Будемо раді допомогти з вибором і відповісти на ваші запитання.</p>
+            </div>
+        </header>
+
+        <div class="contact-grid">
+            <section class="contact-item" aria-labelledby="contact-hours-title">
+                <span class="contact-item-icon" aria-hidden="true"><i class="fa-regular fa-clock"></i></span>
+                <h3 id="contact-hours-title">Графік роботи</h3>
+                <dl class="contact-hours">
+                    <div><dt>Пн–Пт</dt><dd>09.00–17.00</dd></div>
+                    <div><dt>Сб–Нд</dt><dd>Вихідний</dd></div>
+                </dl>
+                <div class="contact-clock" role="timer" aria-label="Поточний місцевий час">
+                    <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                    <div class="contact-clock-readout">
+                        <time class="contact-clock-time" data-contact-clock>--:--:--</time>
+                        <span class="contact-clock-caption">Місцевий час</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-item" aria-labelledby="contact-phones-title">
+                <span class="contact-item-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
+                <h3 id="contact-phones-title">Телефони</h3>
+                <div class="contact-phone-list">
+                    <a href="tel:+380932521251"><i class="fa-solid fa-phone" aria-hidden="true"></i> +380932521251</a>
+                    <a href="tel:+380963313832"><i class="fa-solid fa-phone" aria-hidden="true"></i> +380963313832</a>
+                </div>
+                <div class="contact-phone-animation" aria-hidden="true">
+                    <span class="contact-phone-device">
+                        <span class="contact-phone-speaker"></span>
+                        <span class="contact-phone-screen"><i class="fa-solid fa-phone-volume"></i></span>
+                        <span class="contact-phone-home"></span>
+                    </span>
+                </div>
+            </section>
+
+            <section class="contact-item contact-socials" aria-labelledby="contact-socials-title">
+                <span class="contact-item-icon" aria-hidden="true"><i class="fa-solid fa-share-nodes"></i></span>
+                <h3 id="contact-socials-title">Соціальні мережі</h3>
+                <div class="contact-social-list">
+                    <a class="contact-social-link" href="https://www.instagram.com/tanyafarmasi1?obrf=eXJxcHpqNmVhdW1r" target="_blank" rel="noopener noreferrer">
+                        <img class="contact-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=176x176&amp;format=svg&amp;data=https%3A%2F%2Fwww.instagram.com%2Ftanyafarmasi1%3Fobrf%3DeXJxcHpqNmVhdW1r" alt="QR-код для Instagram" width="88" height="88" loading="lazy">
+                        <span class="contact-social-name"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</span>
+                    </a>
+                    <a class="contact-social-link" href="https://www.tiktok.com/@beauty_for_every_day?_r=1" target="_blank" rel="noopener noreferrer">
+                        <img class="contact-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=176x176&amp;format=svg&amp;data=https%3A%2F%2Fwww.tiktok.com%2F%40beauty_for_every_day%3F_r%3D1" alt="QR-код для TikTok" width="88" height="88" loading="lazy">
+                        <span class="contact-social-name"><i class="fa-brands fa-tiktok" aria-hidden="true"></i> TikTok</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="contact-item" aria-labelledby="contact-location-title">
+                <span class="contact-item-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+                <h3 id="contact-location-title">Місцезнаходження</h3>
+                <address class="contact-address">
+                    <a class="contact-location-link" href="https://www.google.com/maps/search/?api=1&amp;query=Калинівка%2C%20Вінницька%20область%2C%20Україна" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        <span>Україна,<br>Вінницька область,<br>місто Калинівка</span>
+                    </a>
+                </address>
+                <iframe
+                    class="contact-map"
+                    src="https://maps.google.com/maps?q=Kalynivka%2C%20Vinnytsia%20Oblast%2C%20Ukraine&amp;output=embed"
+                    title="Карта: місто Калинівка, Вінницька область, Україна"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </section>
+        </div>
+    </div>
+</section>
+
+<script src="script.js" defer></script>
+</body>
+</html>
